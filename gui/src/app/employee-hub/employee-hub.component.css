@@ -1,0 +1,34 @@
+body {
+    background-image: url("staff.png");
+    background-color: #cccccc;
+ }
+
+ .table-scroll{
+    display: block;
+    max-height: 80vh;
+    width:100%;
+    overflow-y:auto;
+    overflow-x:auto;
+}
+
+tbody tr {
+    border-left: solid 8px #fff;
+}
+
+.selectedRow {
+    border-left: solid 8px #dd5826;
+}
+
+.table-scroll::-webkit-scrollbar {
+    width: .4rem;
+}
+
+.table-scroll::-webkit-scrollbar-thumb {
+    background: rgb(175, 170, 170); 
+    border-radius: 10px;
+    
+}
+
+.table-scroll::-webkit-scrollbar-track {
+    border-radius: 20px;
+}

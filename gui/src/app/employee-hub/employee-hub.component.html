@@ -1,0 +1,79 @@
+<app-hero-image></app-hero-image>
+<div class="row">
+  <div class=" col-xl-4 col-lg-4 col-md-6 col-sm-8 col-xs-12 py-4 px-sm-4">
+    <div id="collapseExample" [ngbCollapse]="isCollapsed">
+      <form [formGroup]="registerForm" (ngSubmit)=submit()>
+        <h1>Employee Details</h1>
+        <div class="formGroup col-md-12">
+          <label for="firstName">First Name</label>
+          <input type="text" class="form-control  col-md-8 col-8" formControlName="firstName" required>
+        </div>
+        <div class="formGroup col-md-12 ">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control col-md-8 col-8" formControlName="lastName" required>
+        </div>
+        <div class="formGroup col-md-12">
+          <label for="gender">Gender</label>
+          <div class="row col-md-8 col-8">
+            <input type="radio" class ="py-4 px-sm-4" value="male" name="gender" formControlName="gender" required>Male
+            <input type="radio" class ="py-4 px-sm-4" value="female" name="gender" formControlName="gender" required>Female
+          </div>
+        </div>
+        <div class="formGroup col-md-12">
+          <label>Date of Birth</label>
+          <input type="date" class="form-control col-md-8 col-8" formControlName="dob" required>
+          <div class="text-danger" *ngIf="registerForm.get('dob').errors &&
+          registerForm.get('dob').errors.isValid">
+    *Date of Birth must be past Date
+  </div>
+        </div>
+        <div class="formGroup col-md-12">
+          <label for="department">Department</label>
+          <input type="text" class="form-control  col-md-8 col-8" formControlName="department" required>
+        </div>
+        <br>
+        <div>
+          <button class="btn mx-sm-3 col-3 px-4" type="submit" [disabled]="!registerForm.valid">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div >
+    <a role="button" class="mx-sm-3 col-3 py-4 px-4" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+      <h6>Register Employee</h6>
+    </a>
+    <div class="input-group mb-3">
+        <input type="text"  [(ngModel)] = name > 
+        <div class="input-group-append">
+          <input type="button" value="Search" (click) = "Search()">
+        </div><a role="button" (click)="resetSearch()" title="Clear Search">
+            <i class="fa fa-times " aria-hidden="true"  style="font-size:24px"></i>
+          </a> 
+      </div>
+    <table *ngIf= "showTable" class="table  table-fixed table-scroll">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Last Name</th>
+          <th>Department</th>
+          <th>Gender</th>
+          <th>Date of Birth</th>
+        </tr>
+      </thead>
+      <tbody class="tbody">
+        <tr *ngFor="let e of getEmpList(); let i = index" [ngClass]="(i%2==0)?'table-info':'table-warning'">
+          <td class="w-20">{{e.firstName}} </td>
+          <td class="w-20">{{e.lastName}}</td>
+          <td class="w-20">{{e.department}}</td>
+          <td class="w-20">{{e.gender}}</td>
+          <td class="w-20">{{e.dob}} <i class="fa fa-cog fa-save"></i></td>
+        </tr>
+       
+      </tbody>
+    
+    </table>
+  </div>
+   
+  
+</div>
